@@ -1,8 +1,6 @@
 streamlit==1.31.1
 pandas==2.1.2
 geopandas==0.14.3
-folium
-fiona
-pyogrio # Optional, if you decide to use it as an alternative to fiona
-streamlit_folium
-openpyxl
+folium==0.16.0
+streamlit_folium==0.18.0
+openpyxl==3.1.2
