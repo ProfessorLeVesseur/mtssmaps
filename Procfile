@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run MTSS_GPT.py
+web: sh setup.sh && streamlit run app.py
