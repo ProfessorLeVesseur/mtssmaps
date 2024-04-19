@@ -1,5 +1,14 @@
+#------------------------------------------------------------------------
+# Import Modules
+#------------------------------------------------------------------------
+
 import pandas as pd
 import streamlit as st
+from PIL import Image
+
+#------------------------------------------------------------------------
+# Configurations
+#------------------------------------------------------------------------
 
 # Streamlit page setup
 Icon = Image.open("images/MTSS.ai_Icon.png")
@@ -17,18 +26,26 @@ st.set_page_config(
 #     st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
 #     # https://fonts.google.com/selection/embed
 
+#------------------------------------------------------------------------
+# Header
+#------------------------------------------------------------------------
+
 #Add the image with a specified width
 # image_width = 300  # Set the desired width in pixels
 # st.image('MTSS.ai_Logo.png', width=image_width)
 
 st.title('MTSS:grey[.ai]')
-st.header(District Code Matchmaker:grey[ School Districts]')
+st.header('District Code Matchmaker:grey[ School Districts]')
 
 contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey[MTSS.ai]')
 if contact:
     st.sidebar.write('Email: [info@mtss.ai](mailto:info@mtss.ai)  \nWebsite: [levesseur.com](http://levesseur.com)') 
     st.sidebar.write('Inquiries: [info@mtss.ai](mailto:info@mtss.ai)  \nCheck out: [InkQA | Dynamic PDFs](http://www.inkqa.com)') 
 
+
+#------------------------------------------------------------------------
+# Functions
+#------------------------------------------------------------------------
 
 # Load the MI_District_Codes file
 @st.cache_data
