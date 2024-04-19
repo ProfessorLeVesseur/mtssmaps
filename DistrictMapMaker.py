@@ -10,7 +10,11 @@ from streamlit_folium import st_folium
 from pathlib import Path
 import tempfile
 from PIL import Image
-    
+
+#------------------------------------------------------------------------
+# Configurations
+#------------------------------------------------------------------------
+
 # Streamlit page setup
 Icon = Image.open("images/MTSS.ai_Icon.png")
 st.set_page_config(
@@ -27,6 +31,10 @@ st.set_page_config(
 #     st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
     # https://fonts.google.com/selection/embed
 
+#------------------------------------------------------------------------
+# Header
+#------------------------------------------------------------------------
+
 # st.image('MTSS.ai_Logo.png', width=300)
 
 st.title('MTSS:grey[.ai]')
@@ -36,6 +44,10 @@ contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey
 if contact:
     st.sidebar.write('Email: [info@mtss.ai](mailto:info@mtss.ai)  \nWebsite: [levesseur.com](http://levesseur.com)') 
     st.sidebar.write('Inquiries: [info@mtss.ai](mailto:info@mtss.ai)  \nCheck out: [InkQA | Dynamic PDFs](http://www.inkqa.com)') 
+
+#------------------------------------------------------------------------
+# Functions
+#------------------------------------------------------------------------
 
 # Excel/CSV file upload
 uploaded_file = st.file_uploader("Upload your District data XLSX | CSV", type=['xlsx', 'csv'])
