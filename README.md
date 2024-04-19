@@ -1,4 +1,5 @@
-# MTSS Maps
+# MTSS M
+aps
 
 Welcome to MTSS Maps, a dynamic mapping tool designed to visualize educational data across Intermediate School Districts (ISD), Districts, and Public School Academies (PSA). This application is tailored for educational administrators, policy makers, and researchers who need to analyze geographical distributions and trends within educational organizations. The application is specific to Michigan, inquire below for other maps.
 
@@ -23,4 +24,4 @@ MTSS Maps is ideal for:
 
 ## Feedback and Support
 
-For support, suggestions, or to share your experience, please contact us at [support@mtssmaps.com](mailto:support@mtssmaps.com).
+We welcome feedback and inquiries about MTSS Maps. For support or to share your experience, please contact Dr. Cheyne LeVesseur at [info@mtss.ai](mailto:info@mtss.ai).
