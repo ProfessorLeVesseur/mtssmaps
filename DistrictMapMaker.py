@@ -9,7 +9,8 @@ import folium
 from streamlit_folium import st_folium
 from pathlib import Path
 import tempfile
-
+from PIL import Image
+    
 # Streamlit page setup
 Icon = Image.open("images/MTSS.ai_Icon.png")
 st.set_page_config(
