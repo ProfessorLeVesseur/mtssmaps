@@ -29,7 +29,7 @@ st.set_page_config(
 # st.image('MTSS.ai_Logo.png', width=300)
 
 st.title('MTSS:grey[.ai]')
-st.header(District Map Maker:grey[ School Districts]')
+st.header('District Map Maker:grey[ School Districts]')
 
 contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey[MTSS.ai]')
 if contact:
