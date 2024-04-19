@@ -1,0 +1,8 @@
+streamlit
+pandas
+geopandas
+folium
+fiona
+pyogrio # Optional, if you decide to use it as an alternative to fiona
+streamlit_folium
+openpyxl
