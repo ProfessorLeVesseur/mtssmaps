@@ -7,9 +7,20 @@ from pathlib import Path
 import tempfile
 
 # Streamlit page setup
-st.set_page_config(page_title="District Mapping", layout="centered", initial_sidebar_state="auto")
-st.image('MTSS.ai_Logo.png', width=300)  # Adjust path as needed
-st.header('MittenTopography™ | School Districts')
+Icon = Image.open("images/MTSS.ai_Icon.png")
+st.set_page_config(
+    page_title="MTSS Map Maker | ISD District PSA", 
+    page_icon=Icon,
+    layout="centered", 
+    initial_sidebar_state="auto",
+    menu_items={
+        'About': "### *This application was created by*  \n### LeVesseur Ph.D | MTSS.ai"
+    }
+)
+# initial_sidebar_state ("auto" or "expanded" or "collapsed")
+
+# st.image('MTSS.ai_Logo.png', width=300)
+st.header('MTSS Map Maker | School Districts')
 st.subheader('Map Maker')
 
 # Excel/CSV file upload
