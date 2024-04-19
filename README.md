@@ -1,10 +1,10 @@
 # MTSS Maps
 
-Welcome to MTSS Maps, a dynamic mapping tool designed to visualize educational data across Intermediate School Districts (ISD), Districts, and Public School Academies (PSA). This application is tailored for educational administrators, policy makers, and researchers who need to analyze geographical distributions and trends within educational organizations. The application is specific to Michigan, inquire below for other maps.
+Welcome to MTSS Maps, a dynamic mapping tool designed to visualize educational data across Intermediate School Districts (ISD), Districts, and Public School Academies (PSA). This application is tailored for educational administrators, policymakers, and researchers who need to analyze geographical distributions and trends within educational organizations. The application is specific to Michigan, inquire below for other maps.
 
 ## Features
 
-- **Spreadsheet Upload:** Users can upload spreadsheets containing names and IDs of educational organizations. MTSS Maps processes this data to create detailed heat maps.
+- **Spreadsheet Upload:** Users can upload spreadsheets containing names and codes of educational organizations. MTSS Maps processes this data to create detailed heat maps.
   
 - **Heat Map Visualization:** Once the data is uploaded, the application generates heat maps that highlight ISDs, Districts, and PSAs. These maps provide a visual representation of the data, making it easier to identify patterns and areas of interest.
   
