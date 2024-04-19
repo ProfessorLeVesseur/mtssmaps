@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run District_Map_Maker.py
+web: sh setup.sh && streamlit run DistrictMapMaker.py
