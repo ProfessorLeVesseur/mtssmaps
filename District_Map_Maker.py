@@ -17,11 +17,20 @@ st.set_page_config(
         'About': "### *This application was created by*  \n### LeVesseur Ph.D | MTSS.ai"
     }
 )
-# initial_sidebar_state ("auto" or "expanded" or "collapsed")
+
+# with open( "style.css" ) as css:
+#     st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
+    # https://fonts.google.com/selection/embed
 
 # st.image('MTSS.ai_Logo.png', width=300)
-st.header('MTSS Map Maker | School Districts')
-st.subheader('Map Maker')
+
+st.title('MTSS:grey[.ai]')
+st.header(MTSS Map Maker:grey[ School Districts]')
+
+contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey[MTSS.ai]')
+if contact:
+    # st.sidebar.write('Email: [info@mtss.ai](mailto:info@mtss.ai)  \nWebsite: [levesseur.com](http://levesseur.com)') 
+    st.sidebar.write('Inquiries: [info@mtss.ai](mailto:info@mtss.ai)  \nCheck out: [InkQA | Dynamic PDFs](http://www.inkqa.com)') 
 
 # Excel/CSV file upload
 uploaded_file = st.file_uploader("Upload your District data XLSX | CSV", type=['xlsx', 'csv'])
@@ -52,7 +61,7 @@ if uploaded_file is not None:
         df['District Code'] = df['District Code'].apply(lambda x: str(x).zfill(5))
 
         # Load GeoJSON file from the root directory
-        geojson_filename = "School_Districts.geojson"  # Name of your GeoJSON file
+        geojson_filename = "geojson/School_Districts.geojson"  # Name of your GeoJSON file
         geojson_path = Path(geojson_filename)  # Construct the path to the GeoJSON file
 
         if geojson_path.exists():
@@ -120,28 +129,6 @@ if uploaded_file is not None:
             st.write("No Districts")
 
         st.divider() 
-        
-        # # Displaying districts that do not have a count of 1
-        # Districts_not_one = District_Combined[District_Combined['Count'] != 1]
-        # if not Districts_not_one.empty:
-        #     st.write("Districts Not Included:")
-        #     st.dataframe(Districts_not_one[['District', 'District Code']].reset_index(drop=True))
-        
-        #     # Informing the user about the total number of districts that do not have a count of 1
-        #     total_Districts_not_one = len(Districts_not_one)
-        #     st.write("Total number of Districts not included:", total_Districts_not_one)
-
-        #     # Convert DataFrame to CSV for the download button
-        #     csv_none = Districts_not_one[['District', 'District Code']].to_csv(index=False).encode('utf-8')
-        #     st.download_button(
-        #         label="Download Not Included District",
-        #         data=csv_none,
-        #         file_name="District_List_Not_Included.csv",
-        #         mime="text/csv",
-        #         key='download-csv-2'
-        #     )
-        # else:
-        #     st.write("No Districts Excluded")
         
         # Displaying districts that were not matched from df
         unmatched_districts_df = df[~df['District Code'].isin(District_Combined['District Code'])]
