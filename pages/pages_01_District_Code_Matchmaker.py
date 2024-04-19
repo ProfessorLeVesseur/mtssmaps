@@ -2,16 +2,38 @@ import pandas as pd
 import streamlit as st
 
 # Streamlit page setup
-# st.set_page_config(page_title="District Mapping Code Finder", layout="centered", initial_sidebar_state="collapsed")
-st.image('MTSS.ai_Logo.png', width=300)  
-st.header('MTSS Code Matchmaker™ | Districts')
-# st.subheader('Code Finder')
+Icon = Image.open("images/MTSS.ai_Icon.png")
+st.set_page_config(
+    page_title="MTSS Map Maker | ISD District PSA", 
+    page_icon=Icon,
+    layout="centered", 
+    initial_sidebar_state="auto",
+    menu_items={
+        'About': "### *This application was created by*  \n### LeVesseur Ph.D | MTSS.ai"
+    }
+)
+
+# with open( "style.css" ) as css:
+#     st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
+#     # https://fonts.google.com/selection/embed
+
+#Add the image with a specified width
+# image_width = 300  # Set the desired width in pixels
+# st.image('MTSS.ai_Logo.png', width=image_width)
+
+st.title('MTSS:grey[.ai]')
+st.header(District Code Matchmaker:grey[ School Districts]')
+
+contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey[MTSS.ai]')
+if contact:
+    st.sidebar.write('Email: [info@mtss.ai](mailto:info@mtss.ai)  \nWebsite: [levesseur.com](http://levesseur.com)') 
+    st.sidebar.write('Inquiries: [info@mtss.ai](mailto:info@mtss.ai)  \nCheck out: [InkQA | Dynamic PDFs](http://www.inkqa.com)') 
+
 
 # Load the MI_District_Codes file
 @st.cache_data
 def load_district_codes_file():
-    # return pd.read_csv("MI_District_Codes.csv")
-    return pd.read_csv("MI_District_Codes.csv")
+    return pd.read_csv("codes/MI_District_Codes.csv")
 
 # Define the main function
 def main():    
