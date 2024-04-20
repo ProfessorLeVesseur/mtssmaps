@@ -39,9 +39,7 @@ st.header('District Code Matchmaker:grey[ | School Districts]')
 
 contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey[MTSS.ai]')
 if contact:
-    st.sidebar.write('Email: [info@mtss.ai](mailto:info@mtss.ai)  \nWebsite: [levesseur.com](http://levesseur.com)') 
-    st.sidebar.write('Inquiries: [info@mtss.ai](mailto:info@mtss.ai)  \nCheck out: [InkQA | Dynamic PDFs](http://www.inkqa.com)') 
-
+    st.sidebar.write('Inquiries: [info@mtss.ai](mailto:info@mtss.ai)  \nProfile: [levesseur.com](http://levesseur.com)  \nCheck out: [InkQA | Dynamic PDFs](http://www.inkqa.com)')  
 
 #------------------------------------------------------------------------
 # Functions
