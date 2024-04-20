@@ -35,7 +35,7 @@ st.set_page_config(
 # st.image('MTSS.ai_Logo.png', width=image_width)
 
 st.title('MTSS:grey[.ai]')
-st.header('District Code Matchmaker:grey[ School Districts]')
+st.header('District Code Matchmaker:grey[ | School Districts]')
 
 contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey[MTSS.ai]')
 if contact:
