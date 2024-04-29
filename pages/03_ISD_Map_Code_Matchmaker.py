@@ -48,7 +48,6 @@ if contact:
 # Load the MI_ISD_Codes file
 @st.cache_data
 def load_ISD_codes_file():
-    # return pd.read_csv("codes/MI_ISD_Codes.csv")
     return pd.read_csv("codes/MI_ISD_Codes.csv")
 
 # Define the main function
