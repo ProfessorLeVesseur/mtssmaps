@@ -1,16 +1,52 @@
+#------------------------------------------------------------------------
+# Import Modules
+#------------------------------------------------------------------------
+
 import streamlit as st
 import pandas as pd
-import geopandas
+import geopandas as gpd
 import folium
 from streamlit_folium import st_folium
 from pathlib import Path
 import tempfile
+from PIL import Image
+
+#------------------------------------------------------------------------
+# Configurations
+#------------------------------------------------------------------------
 
 # Streamlit page setup
-st.set_page_config(page_title="ISD Mapping", layout="centered", initial_sidebar_state="auto")
-st.image('/Users/cheynelevesseur/Desktop/Python_Code/Mapping_Projects/ISD_Map/MTSS.ai_Logo.png', width=300)  # Adjust path as needed
-st.header('MI MTSS Maps™ | ISDs')
-st.subheader('Map Generator')
+Icon = Image.open("images/MTSS.ai_Icon.png")
+st.set_page_config(
+    page_title="MTSS Map Maker | ISD District PSA", 
+    page_icon=Icon,
+    layout="centered", 
+    initial_sidebar_state="auto",
+    menu_items={
+        'About': "### *This application was created by*  \n### LeVesseur Ph.D | MTSS.ai"
+    }
+)
+
+# with open( "style.css" ) as css:
+#     st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
+    # https://fonts.google.com/selection/embed
+
+#------------------------------------------------------------------------
+# Header
+#------------------------------------------------------------------------
+
+# st.image('MTSS.ai_Logo.png', width=300)
+
+st.title('MTSS:grey[.ai]')
+st.header('Map Maker:grey[ | Intermediate School Districts]')
+
+contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey[MTSS.ai]')
+if contact:
+    st.sidebar.write('Inquiries: [info@mtss.ai](mailto:info@mtss.ai)  \nProfile: [levesseur.com](http://levesseur.com)  \nCheck out: [InkQA | Dynamic PDFs](http://www.inkqa.com)') 
+    
+#------------------------------------------------------------------------
+# Functions
+#------------------------------------------------------------------------
 
 # CSV file upload
 # uploaded_file = st.file_uploader("Upload your ISD data CSV", type=["csv"])
