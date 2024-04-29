@@ -11,8 +11,7 @@ from PIL import Image
 #------------------------------------------------------------------------
 
 # Streamlit page setup
-# Icon = Image.open("images/MTSS.ai_Icon.png")
-Icon = Image.open("/Users/cheynelevesseur/Desktop/Python_Code/Mapping_Projects/ISD_Map/MTSS.ai_Icon.png")
+Icon = Image.open("images/MTSS.ai_Icon.png")
 st.set_page_config(
     page_title="MTSS Map Maker | ISD District PSA", 
     page_icon=Icon,
