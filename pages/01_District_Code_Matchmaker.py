@@ -116,7 +116,7 @@ def main():
         
         # Download updated file
         st.subheader("Download Updated File")
-        st.download_button("Download", data=df_nc.to_csv(), file_name='updated_file.csv', type="primary")
+        st.download_button("Download", data=df_nc.to_csv(), file_name='District_updated_file.csv', type="primary")
 
 if __name__ == "__main__":
     main()
