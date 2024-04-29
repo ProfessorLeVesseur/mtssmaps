@@ -49,7 +49,7 @@ if contact:
 @st.cache_data
 def load_ISD_codes_file():
     # return pd.read_csv("codes/MI_ISD_Codes.csv")
-    return pd.read_csv("/Users/cheynelevesseur/Desktop/Python_Code/Mapping_Projects/ISD_Map/MI_ISD_Codes.csv")
+    return pd.read_csv("codes/MI_ISD_Codes.csv")
 
 # Define the main function
 def main():    
