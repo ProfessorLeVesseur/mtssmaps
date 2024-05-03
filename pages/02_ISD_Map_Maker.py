@@ -258,7 +258,7 @@ if uploaded_file is not None:
                 key='download-csv-unmatched-df'
             )
         else:
-            st.write("All ISDs from df matched with Mi_ISD_geojson.")
+            st.write("All ISDs from your spreadsheet matched with the Michigan ISD GeoJSON file.")
 
 
         st.divider()
@@ -274,7 +274,7 @@ if uploaded_file is not None:
                 btn = st.download_button(
                     label="Download Map as HTML",
                     data=file,
-                    file_name="ISDt_Map.html",
+                    file_name="ISD_Map.html",
                     mime="text/html",
                     type="primary"
                 )
