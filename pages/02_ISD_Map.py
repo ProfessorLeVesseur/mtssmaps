@@ -66,7 +66,7 @@ if uploaded_file is not None:
     df['ISD Code'] = df['ISD Code'].apply(lambda x: str(x).zfill(5))
     
     # Load GeoJSON file from the root directory
-    geojson_filename = "Intermediate_School_Districts.geojson"  # Name of your GeoJSON file
+    geojson_filename = "geojson/Intermediate_School_Districts.geojson"  # Name of your GeoJSON file
     geojson_path = Path(__file__).parent / geojson_filename  # Construct the path to the GeoJSON file
     
     if geojson_path.exists():
