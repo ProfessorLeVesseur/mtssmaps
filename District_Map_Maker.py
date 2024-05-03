@@ -168,7 +168,7 @@ if uploaded_file is not None:
                 key='download-csv-unmatched-df'
             )
         else:
-            st.write("All districts from df matched with Mi_District_geojson.")
+            st.write("All Districts from your spreadsheet matched with the Michigan District GeoJSON file.")
 
 
         st.divider()
