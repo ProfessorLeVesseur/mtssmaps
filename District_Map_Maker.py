@@ -116,7 +116,7 @@ if uploaded_file is not None:
             folium.GeoJson(
                 District_Combined.to_json(),
                 style_function=style_function,
-                tooltip=folium.GeoJsonTooltip(fields=['District'], aliases=['District:'])
+                tooltip=folium.GeoJsonTooltip(fields=['District'], aliases=['District: '])
             ).add_to(m)
 
         st.divider()
