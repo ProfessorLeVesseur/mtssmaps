@@ -77,13 +77,11 @@ if uploaded_file is not None:
         df['PSA Code'] = df['PSA Code'].apply(lambda x: str(x).zfill(5))
 
         # Load GeoJSON file from the root directory
-        # geojson_filename = "geojson/PSA_geojson.csv"  # Name of file
-        geojson_filename = "/Users/cheynelevesseur/Desktop/Python_Code/Mapping_Projects/PSA_Map/PSA_geojson.csv"
+        geojson_filename = "geojson/PSA_geojson.csv"  # Name of file
         geojson_path = Path(geojson_filename)  # Construct the path to the GeoJSON file
 
         if geojson_path.exists():
             Mi_PSA_geojson = gpd.read_file(geojson_path)
-            # Mi_PSA_geojson.rename(columns={'DCODE': 'PSA Code', 'NAME': 'PSA'}, inplace=True)
 
             # Drop unwanted columns
             columns_to_drop = ['Street', 'City', 'State', 'Zip', 'Address_Unformatted', 'confidence', 'confidence_city_level', 'confidence_street_level']
