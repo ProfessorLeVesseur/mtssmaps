@@ -115,8 +115,14 @@ def main():
         st.divider()
         
         # Download updated file
+        # st.subheader("Download Updated File")
+        # st.download_button("Download", data=df_nc.to_csv(), file_name='PSA_updated_file.csv', type="primary")
+
+        # Download updated file
         st.subheader("Download Updated File")
-        st.download_button("Download", data=df_nc.to_csv(), file_name='PSA_updated_file.csv', type="primary")
+        df_nc_selected_columns = df_nc[['PSA', 'PSA Code']]  # Select only the desired columns
+        st.download_button("Download", data=df_nc_selected_columns.to_csv(index=False), file_name='PSA_updated_file.csv', type="primary")
+
 
 if __name__ == "__main__":
     main()
