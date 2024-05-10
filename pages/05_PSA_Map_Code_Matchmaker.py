@@ -48,9 +48,7 @@ if contact:
 # Load the MI_PSA_Codes file
 @st.cache_data
 def load_PSA_codes_file():
-    # return pd.read_csv("codes/MI_PSA_Codes.csv")
-    return pd.read_csv("/Users/cheynelevesseur/Desktop/Python_Code/Mapping_Projects/PSA_Map/PSA_geojson.csv")
-    # return pd.read_csv("codes/PSA_geojson.csv")
+    return pd.read_csv("codes/MI_PSA_Codes.csv")
 
 # Define the main function
 def main():    
