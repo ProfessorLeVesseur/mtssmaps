@@ -94,7 +94,8 @@ if uploaded_file is not None:
             Mi_PSA_geojson['PSA Code'] = Mi_PSA_geojson['PSA Code'].apply(lambda x: str(x).zfill(5))
 
             # Merge GeoJSON file and DataFrame
-            PSA_Combined = pd.merge(Mi_PSA_geojson, df, on='PSA Code', how='left', suffixes=('', '_drop')).fillna(0)
+            # PSA_Combined = pd.merge(Mi_PSA_geojson, df, on='PSA Code', how='left', suffixes=('', '_drop')).fillna(0)
+            PSA_Combined = pd.merge(Mi_PSA_geojson, df, on='PSA Code', how='left', suffixes=('', '_drop'))
 
             # Identify and drop columns that end with '_drop'
             PSA_Combined = PSA_Combined.loc[:, ~PSA_Combined.columns.str.endswith('_drop')]
