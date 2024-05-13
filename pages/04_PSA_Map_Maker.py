@@ -122,11 +122,12 @@ if uploaded_file is not None:
             m = folium.Map(location=[44.3148, -85.6024], zoom_start=7, attr='MiMTSS TA Center')
             # Iterate through the Mi_PSA_geocoded DataFrame to add markers
             for idx, row in PSA_Combined.iterrows():
-                folium.Marker(
-                    location=[row['Latitude'], row['Longitude']],
-                    popup=row['PSA'],  
-                    icon=folium.Icon(color='green', icon="school", prefix='fa')
-                ).add_to(m)
+                if row['Count'] == 1:  # Check if the 'Count' column is 1
+                    folium.Marker(
+                        location=[row['Latitude'], row['Longitude']],
+                        popup=row['PSA'],  
+                        icon=folium.Icon(color='green', icon="school", prefix='fa')
+                    ).add_to(m)
 
         st.divider()
 
