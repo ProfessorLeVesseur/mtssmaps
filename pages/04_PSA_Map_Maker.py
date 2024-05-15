@@ -48,6 +48,8 @@ if contact:
 # Functions
 #------------------------------------------------------------------------
 
+st.divider()
+
 # Add the descriptive text
 st.markdown("""
 Your PSA data spreadsheet must include two columns: 'PSA' and 'PSA Code'. The PSA codes are used to match the location data to create a map.
@@ -69,6 +71,8 @@ st.download_button(
     file_name='PSA_Data.xlsx',
     mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'  # MIME type for .xlsx files
 )
+
+st.divider()
 
 # Excel/CSV file upload
 uploaded_file = st.file_uploader("Upload your District data XLSX | CSV", type=['xlsx', 'csv'])
