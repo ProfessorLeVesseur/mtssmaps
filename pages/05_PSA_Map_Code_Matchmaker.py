@@ -37,10 +37,14 @@ st.set_page_config(
 st.title('MTSS:grey[.ai]')
 st.header('Code Matchmaker:grey[ | Public School Academies]')
 
+st.divider()
+
 # Add the descriptive text
 st.markdown("""
 PSA names must be exact matches and are case-sensitive. If needed, use the 'Enter search string' option to enter partial names to locate a match.
 """)
+
+st.divider()
 
 contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey[MTSS.ai]')
 if contact:
