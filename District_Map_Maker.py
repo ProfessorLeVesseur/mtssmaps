@@ -48,6 +48,8 @@ if contact:
 # Functions
 #------------------------------------------------------------------------
 
+st.divider() 
+
 # Add the descriptive text
 st.markdown("""
 Your District data spreadsheet must include two columns: 'District' and 'District Code'. The District codes are used to match the location data to create a map.
@@ -57,6 +59,8 @@ If your spreadsheet lists districts in the 'District' column but does not includ
 
 # Path to the existing Excel file
 file_path = "examples/District_Data.xlsx"
+
+st.divider()
 
 # Read the file and load it into a bytes object
 with open(file_path, "rb") as file:
