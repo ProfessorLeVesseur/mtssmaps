@@ -48,6 +48,28 @@ if contact:
 # Functions
 #------------------------------------------------------------------------
 
+# Add the descriptive text
+st.markdown("""
+Your PSA data spreadsheet must include two columns: 'PSA' and 'PSA Code'. The PSA codes are used to match the location data to create a map.
+
+If your spreadsheet lists PSAs in the 'PSA' column but does not include PSA codes, use the **PSA Code Matchmaker** to find the 'PSA Code'.
+""")
+
+# Path to the existing Excel file
+file_path = "examples/PSA_Data.xlsx"
+
+# Read the file and load it into a bytes object
+with open(file_path, "rb") as file:
+    file_data = file.read()
+
+# Display download button with MIME type for Excel
+st.download_button(
+    label="Download an example PSA data spreadsheet",
+    data=file_data,
+    file_name='PSA_Data.xlsx',
+    mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'  # MIME type for .xlsx files
+)
+
 # Excel/CSV file upload
 uploaded_file = st.file_uploader("Upload your District data XLSX | CSV", type=['xlsx', 'csv'])
 if uploaded_file is not None:
