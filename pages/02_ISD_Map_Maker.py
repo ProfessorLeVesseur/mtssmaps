@@ -64,9 +64,9 @@ with open(file_path, "rb") as file:
 
 # Display download button with MIME type for Excel
 st.download_button(
-    label="Download an example District data spreadsheet",
+    label="Download an example ISD data spreadsheet",
     data=file_data,
-    file_name='District Data.xlsx',
+    file_name='ISD_Data.xlsx',
     mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'  # MIME type for .xlsx files
 )
 
