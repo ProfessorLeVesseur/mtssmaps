@@ -37,6 +37,11 @@ st.set_page_config(
 st.title('MTSS:grey[.ai]')
 st.header('Code Matchmaker:grey[ | Intermediate School Districts]')
 
+# Add the descriptive text
+st.markdown("""
+ISD names must be exact matches and are case-sensitive. If needed, use the 'Enter search string' option to enter partial names to locate a match.
+""")
+
 contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey[MTSS.ai]')
 if contact:
     st.sidebar.write('Inquiries: [info@mtss.ai](mailto:info@mtss.ai)  \nProfile: [levesseur.com](http://levesseur.com)  \nCheck out: [InkQA | Dynamic PDFs](http://www.inkqa.com)')  
