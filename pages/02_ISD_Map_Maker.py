@@ -48,6 +48,8 @@ if contact:
 # Functions
 #------------------------------------------------------------------------
 
+st.divider()
+
 # Add the descriptive text
 st.markdown("""
 Your ISD data spreadsheet must include two columns: 'ISD' and 'ISD Code'. The ISD codes are used to match the location data to create a map.
@@ -69,6 +71,8 @@ st.download_button(
     file_name='ISD_Data.xlsx',
     mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'  # MIME type for .xlsx files
 )
+
+st.divider()
 
 # # CSV file upload
 # # uploaded_file = st.file_uploader("Upload your ISD data CSV", type=["csv"])
