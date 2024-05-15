@@ -60,8 +60,6 @@ If your spreadsheet lists districts in the 'District' column but does not includ
 # Path to the existing Excel file
 file_path = "examples/District_Data.xlsx"
 
-st.divider()
-
 # Read the file and load it into a bytes object
 with open(file_path, "rb") as file:
     file_data = file.read()
@@ -73,6 +71,8 @@ st.download_button(
     file_name='District_Data.xlsx',
     mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'  # MIME type for .xlsx files
 )
+
+st.divider()
 
 # Excel/CSV file upload
 uploaded_file = st.file_uploader("Upload your District data XLSX | CSV", type=['xlsx', 'csv'])
