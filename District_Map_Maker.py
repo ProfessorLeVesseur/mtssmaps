@@ -55,6 +55,21 @@ Your District data spreadsheet must include two columns: 'District' and 'Distric
 If your spreadsheet lists districts in the 'District' column but does not include district codes, use the **District Code Matchmaker** to find the 'District Code'.
 """)
 
+# Path to the existing Excel file
+file_path = "examples/District Data.xlsx"
+
+# Read the file and load it into a bytes object
+with open(file_path, "rb") as file:
+    file_data = file.read()
+
+# Display download button with MIME type for Excel
+st.download_button(
+    label="Download an example District data spreadsheet",
+    data=file_data,
+    file_name='District Data.xlsx',
+    mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'  # MIME type for .xlsx files
+)
+
 # Excel/CSV file upload
 uploaded_file = st.file_uploader("Upload your District data XLSX | CSV", type=['xlsx', 'csv'])
 if uploaded_file is not None:
