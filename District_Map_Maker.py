@@ -48,6 +48,13 @@ if contact:
 # Functions
 #------------------------------------------------------------------------
 
+# Add the descriptive text
+st.markdown("""
+Your District data spreadsheet must include two columns: 'District' and 'District Code'. The District codes are used to match the location data to create a map.
+
+If your spreadsheet lists districts in the 'District' column but does not include district codes, use the **District Code Matchmaker** to find the 'District Code'.
+""")
+
 # Excel/CSV file upload
 uploaded_file = st.file_uploader("Upload your District data XLSX | CSV", type=['xlsx', 'csv'])
 if uploaded_file is not None:
