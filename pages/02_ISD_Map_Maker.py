@@ -48,6 +48,28 @@ if contact:
 # Functions
 #------------------------------------------------------------------------
 
+# Add the descriptive text
+st.markdown("""
+Your ISD data spreadsheet must include two columns: 'ISD' and 'ISD Code'. The ISD codes are used to match the location data to create a map.
+
+If your spreadsheet lists ISD in the 'ISD' column but does not include ISD codes, use the **ISD Code Matchmaker** to find the 'ISD Code'.
+""")
+
+# Path to the existing Excel file
+file_path = "examples/ISD_Data.xlsx"
+
+# Read the file and load it into a bytes object
+with open(file_path, "rb") as file:
+    file_data = file.read()
+
+# Display download button with MIME type for Excel
+st.download_button(
+    label="Download an example District data spreadsheet",
+    data=file_data,
+    file_name='District Data.xlsx',
+    mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'  # MIME type for .xlsx files
+)
+
 # # CSV file upload
 # # uploaded_file = st.file_uploader("Upload your ISD data CSV", type=["csv"])
 # # if uploaded_file is not None:
