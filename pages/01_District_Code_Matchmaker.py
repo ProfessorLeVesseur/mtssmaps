@@ -128,6 +128,9 @@ def main():
         # st.download_button("Download", data=df_nc.to_csv(), file_name='District_updated_file.csv', type="primary")
 
         import io
+
+        # Ensure 'District Code' is treated as a string and remove any decimal points
+        df_nc['District Code'] = df_nc['District Code'].apply(lambda x: str(int(float(x))) if pd.notnull(x) else '')
         
         # Convert DataFrame to Excel format without the index
         output = io.BytesIO()
