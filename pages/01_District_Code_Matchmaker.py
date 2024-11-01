@@ -123,9 +123,21 @@ def main():
         
         st.divider()
         
-        # Download updated file
+        # # Download updated file
+        # st.subheader("Download Updated File")
+        # st.download_button("Download", data=df_nc.to_csv(), file_name='District_updated_file.csv', type="primary")
+
+        # Convert DataFrame to Excel format without the index
+        excel_data = df_nc.to_excel(index=False, engine='openpyxl')
+        
+        # Download updated file as Excel
         st.subheader("Download Updated File")
-        st.download_button("Download", data=df_nc.to_csv(), file_name='District_updated_file.csv', type="primary")
+        st.download_button(
+            label="Download",
+            data=excel_data,
+            file_name='District_updated_file.xlsx',
+            mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        )
 
 if __name__ == "__main__":
     main()
