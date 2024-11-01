@@ -127,8 +127,15 @@ def main():
         # st.subheader("Download Updated File")
         # st.download_button("Download", data=df_nc.to_csv(), file_name='District_updated_file.csv', type="primary")
 
+        import io
+        
         # Convert DataFrame to Excel format without the index
-        excel_data = df_nc.to_excel(index=False, engine='openpyxl')
+        output = io.BytesIO()
+        with pd.ExcelWriter(output, engine='openpyxl') as writer:
+            df_nc.to_excel(writer, index=False)
+        
+        # Get the Excel data from the BytesIO object
+        excel_data = output.getvalue()
         
         # Download updated file as Excel
         st.subheader("Download Updated File")
