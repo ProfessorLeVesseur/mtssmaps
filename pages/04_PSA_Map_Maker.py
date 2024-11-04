@@ -161,7 +161,7 @@ if uploaded_file is not None:
                 if row['Count'] == 1:  # Check if the 'Count' column is 1
                     folium.CircleMarker(
                         location=[row['Latitude'], row['Longitude']],
-                        radius=5,  # Small radius for the dot
+                        radius=8,  # Small radius for the dot
                         color='#006DB6',  # Border color of the circle
                         stroke=False,  # No border
                         fill=True,  # Fill the circle
