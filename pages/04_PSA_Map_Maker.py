@@ -133,7 +133,6 @@ if uploaded_file is not None:
             # Drop rows where Latitude or Longitude are NaN
             PSA_Combined.dropna(subset=['Latitude', 'Longitude'], inplace=True)
 
-            #NEW 
             # Load the Michigan GeoJSON file
             michigan_geojson_path = "geojson/michigan.geojson"  # file path
             michigan_geojson = gpd.read_file(michigan_geojson_path)
@@ -145,29 +144,15 @@ if uploaded_file is not None:
                     'fillOpacity': 0.0,      # No fill opacity
                     'lineOpacity': 1,      # Make the border more visible
                 }
-            #END 
-
-            # Generating the Folium map
-            # def style_function(feature):
-            #     count = feature['properties'].get('Count', 0)
-            #     return {
-            #         'fillColor': '#48BB88' if count > 0 else 'white',
-            #         'color': 'black',
-            #         'weight': 0.5,
-            #         'fillOpacity': 0.7 if count > 0 else 0.25,
-            #         'lineOpacity': 0.4,
-            #     }
 
             # with st.spinner("Generating Folium map..."):
             m = folium.Map(location=[44.3148, -85.6024], zoom_start=7, attr='MiMTSS TA Center')
 
-            #NEW
             # Add the Michigan GeoJSON to the map with the style function
             folium.GeoJson(
                 michigan_geojson,
                 style_function=style_function
             ).add_to(m)
-            #END
             
             # # Iterate through the Mi_PSA_geocoded DataFrame to add markers
             # for idx, row in PSA_Combined.iterrows():
