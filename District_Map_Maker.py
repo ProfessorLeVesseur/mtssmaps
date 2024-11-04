@@ -308,33 +308,32 @@ if uploaded_file is not None:
                     'lineOpacity': 0.4,
                 }
 
-            with st.spinner("Generating Folium map..."):
-                # Create the Folium map
-                m = folium.Map(location=[44.3148, -85.6024], zoom_start=7)
-                folium.GeoJson(
-                    District_Combined.to_json(),
-                    style_function=style_function,
-                    tooltip=folium.GeoJsonTooltip(fields=['District'], aliases=['District: '])
-                ).add_to(m)
-    
-                # Load the Michigan GeoJSON file
-                michigan_geojson_path = "geojson/michigan.geojson"
-                michigan_geojson = gpd.read_file(michigan_geojson_path)
-    
-                # Define the style function for the Michigan border
-                def michigan_style_function(feature):
-                    return {
-                        'color': 'black',        # Border color
-                        'weight': 2,             # Thicker border for visibility
-                        'fillOpacity': 0,        # No fill opacity
-                        'lineOpacity': 1,        # Full opacity for the border
-                    }
-    
-                # Add the Michigan GeoJSON to the map with the style function
-                folium.GeoJson(
-                    michigan_geojson,
-                    style_function=michigan_style_function
-                ).add_to(m)
+            # Create the Folium map
+            m = folium.Map(location=[44.3148, -85.6024], zoom_start=7)
+            folium.GeoJson(
+                District_Combined.to_json(),
+                style_function=style_function,
+                tooltip=folium.GeoJsonTooltip(fields=['District'], aliases=['District: '])
+            ).add_to(m)
+
+            # Load the Michigan GeoJSON file
+            michigan_geojson_path = "geojson/michigan.geojson"
+            michigan_geojson = gpd.read_file(michigan_geojson_path)
+
+            # Define the style function for the Michigan border
+            def michigan_style_function(feature):
+                return {
+                    'color': 'black',        # Border color
+                    'weight': 2,             # Thicker border for visibility
+                    'fillOpacity': 0,        # No fill opacity
+                    'lineOpacity': 1,        # Full opacity for the border
+                }
+
+            # Add the Michigan GeoJSON to the map with the style function
+            folium.GeoJson(
+                michigan_geojson,
+                style_function=michigan_style_function
+            ).add_to(m)
 
         st.divider()
 
