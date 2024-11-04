@@ -130,7 +130,7 @@ if uploaded_file is not None:
             def style_function(feature):
                 count = feature['properties'].get('Count', 0)
                 return {
-                    'fillColor': '#48BB88' if count > 0 else 'white',
+                    'fillColor': '#006DB6' if count > 0 else 'white',
                     'color': 'black',
                     'weight': 0.15,
                     'fillOpacity': 0.7 if count > 0 else 0.25,
