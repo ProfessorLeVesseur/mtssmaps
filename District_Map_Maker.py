@@ -316,6 +316,27 @@ if uploaded_file is not None:
                 tooltip=folium.GeoJsonTooltip(fields=['District'], aliases=['District: '])
             ).add_to(m)
 
+            #NEW
+            # Load the Michigan GeoJSON file
+            michigan_geojson_path = "geojson/michigan.geojson"
+            michigan_geojson = gpd.read_file(michigan_geojson_path)
+
+            # Define the style function for the Michigan border
+            def michigan_style_function(feature):
+                return {
+                    'color': 'black',        # Border color
+                    'weight': 2,             # Thicker border for visibility
+                    'fillOpacity': 0,        # No fill opacity
+                    'lineOpacity': 1,        # Full opacity for the border
+                }
+
+            # Add the Michigan GeoJSON to the map with the style function
+            folium.GeoJson(
+                michigan_geojson,
+                style_function=michigan_style_function
+            ).add_to(m)
+            #END
+
         st.divider()
 
         # Displaying districts that were matched from df
