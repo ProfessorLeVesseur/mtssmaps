@@ -140,43 +140,33 @@ if uploaded_file is not None:
             def style_function(feature):
                 return {
                     'color': 'black',        # Border color
-                    'weight': 2,           # Slightly thicker border for clarity
+                    'weight': 1.5,           # Slightly thicker border for clarity
                     'fillOpacity': 0.0,      # No fill opacity
                     'lineOpacity': 1,      # Make the border more visible
                 }
 
-            with st.spinner("Generating Folium map..."):
-                m = folium.Map(location=[44.3148, -85.6024], zoom_start=7, attr='MiMTSS TA Center')
-    
-                # Add the Michigan GeoJSON to the map with the style function
-                folium.GeoJson(
-                    michigan_geojson,
-                    style_function=style_function
-                ).add_to(m)
-                
-                # # Iterate through the Mi_PSA_geocoded DataFrame to add markers
-                # for idx, row in PSA_Combined.iterrows():
-                #     if row['Count'] == 1:  # Check if the 'Count' column is 1
-                #         folium.Marker(
-                #             location=[row['Latitude'], row['Longitude']],
-                #             popup=row['PSA'],  
-                #             icon=folium.Icon(color='#006DB6', icon="circle", prefix='fa')
-                #         ).add_to(m)
-    
-                # Iterate through the PSA_Combined DataFrame to add circle markers
-                for idx, row in PSA_Combined.iterrows():
-                    if row['Count'] == 1:  # Check if the 'Count' column is 1
-                        folium.CircleMarker(
-                            location=[row['Latitude'], row['Longitude']],
-                            radius=8,  # Small radius for the dot
-                            color='#006DB6',  # Border color of the circle
-                            stroke=False,  # No border
-                            fill=True,  # Fill the circle
-                            fill_color='#006DB6',  # Fill color of the circle
-                            fill_opacity=0.6,  # Opacity of the fill
-                            opacity=1,  # Opacity of the stroke (not used since stroke=False)
-                            popup=row['PSA']
-                        ).add_to(m)
+            m = folium.Map(location=[44.3148, -85.6024], zoom_start=7, attr='MiMTSS TA Center')
+
+            # Add the Michigan GeoJSON to the map with the style function
+            folium.GeoJson(
+                michigan_geojson,
+                style_function=style_function
+            ).add_to(m)
+
+            # Iterate through the PSA_Combined DataFrame to add circle markers
+            for idx, row in PSA_Combined.iterrows():
+                if row['Count'] == 1:  # Check if the 'Count' column is 1
+                    folium.CircleMarker(
+                        location=[row['Latitude'], row['Longitude']],
+                        radius=8,  # Small radius for the dot
+                        color='#006DB6',  # Border color of the circle
+                        stroke=False,  # No border
+                        fill=True,  # Fill the circle
+                        fill_color='#006DB6',  # Fill color of the circle
+                        fill_opacity=0.6,  # Opacity of the fill
+                        opacity=1,  # Opacity of the stroke (not used since stroke=False)
+                        popup=row['PSA']
+                    ).add_to(m)
 
         st.divider()
 
