@@ -18,7 +18,7 @@ from PIL import Image
 # Streamlit page setup
 Icon = Image.open("images/MTSS.ai_Icon.png")
 st.set_page_config(
-    page_title="MTSS Map Maker | ISD District PSA", 
+    page_title="MTSS Map Maker | ISD District School", 
     page_icon=Icon,
     layout="centered", 
     initial_sidebar_state="auto",
@@ -27,18 +27,12 @@ st.set_page_config(
     }
 )
 
-# with open( "style.css" ) as css:
-#     st.markdown( f'<style>{css.read()}</style>' , unsafe_allow_html= True)
-    # https://fonts.google.com/selection/embed
-
 #------------------------------------------------------------------------
 # Header
 #------------------------------------------------------------------------
 
-# st.image('MTSS.ai_Logo.png', width=300)
-
 st.title('MTSS:grey[.ai]')
-st.header('Map Maker:grey[ | Public School Academies]')
+st.header('Map Maker:grey[ | Schools]')
 
 contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey[MTSS.ai]')
 if contact:
@@ -52,13 +46,13 @@ st.divider()
 
 # Add the descriptive text
 st.markdown("""
-Your PSA data spreadsheet must include two columns: 'PSA' and 'PSA Code'. The PSA codes are used to match the location data to create a map.
+Your School data spreadsheet must include two columns: 'School' and 'School Code'. The School codes are used to match the location data to create a map.
 
-If your spreadsheet lists PSAs in the 'PSA' column but does not include PSA codes, use the **PSA Code Matchmaker** to find the 'PSA Code'.
+If your spreadsheet lists Schools in the 'School' column but does not include School codes, use the **School Code Matchmaker** to find the 'School Code'.
 """)
 
 # Path to the existing Excel file
-file_path = "examples/PSA_Data.xlsx"
+file_path = "examples/School_Data.xlsx"
 
 # Read the file and load it into a bytes object
 with open(file_path, "rb") as file:
@@ -66,9 +60,9 @@ with open(file_path, "rb") as file:
 
 # Display download button with MIME type for Excel
 st.download_button(
-    label="Download an example PSA data spreadsheet",
+    label="Download an example School data spreadsheet",
     data=file_data,
-    file_name='PSA_Data.xlsx',
+    file_name='School_Data.xlsx',
     mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'  # MIME type for .xlsx files
 )
 
@@ -88,50 +82,49 @@ if uploaded_file is not None:
             st.stop()  # Stop execution if file format is not supported
 
         # Check if required columns are present
-        required_columns = ['PSA', 'PSA Code']
+        required_columns = ['School', 'School Code']
         if not all(col in df.columns for col in required_columns):
-            st.warning("The uploaded file must contain 'PSA' and 'PSA Code' columns.")
+            st.warning("The uploaded file must contain 'School' and 'School Code' columns.")
             st.stop()  # Stop execution if required columns are not present
 
-        # Specify dtype as str for 'PSA Code' to ensure it reads in as string
-        df['PSA Code'] = df['PSA Code'].astype(str)
+        # Specify dtype as str for 'School Code' to ensure it reads in as string
+        df['School Code'] = df['School Code'].astype(str)
 
         # Add column "Count" and set all rows to 1
         df['Count'] = 1
 
-        # If the 'PSA Code' column contains integers without leading zeros, add them
-        df['PSA Code'] = df['PSA Code'].apply(lambda x: str(x).zfill(5))
+        # If the 'School Code' column contains integers without leading zeros, add them
+        df['School Code'] = df['School Code'].apply(lambda x: str(x).zfill(5))
 
         # Load GeoJSON file from the root directory
-        geojson_filename = "geojson/PSA_geojson.csv"  # Name of file
+        geojson_filename = "geojson/School_geojson.csv"  # Name of file
         geojson_path = Path(geojson_filename)  # Construct the path to the GeoJSON file
 
         if geojson_path.exists():
-            Mi_PSA_geojson = gpd.read_file(geojson_path)
+            Mi_School_geojson = gpd.read_file(geojson_path)
 
             # Drop unwanted columns
-            columns_to_drop = ['Street', 'City', 'State', 'Zip', 'Address_Unformatted', 'confidence', 'confidence_city_level', 'confidence_street_level']
-            Mi_PSA_geojson.drop(columns=columns_to_drop, axis=1, inplace=True)
+            columns_to_drop = ['Address', 'City', 'ZIP Code', 'Grade Levels', 'Locale', 'District Code', 'District', 'ISD Code', 'ISD Name']
+            Mi_School_geojson.drop(columns=columns_to_drop, axis=1, inplace=True)
 
-            # Ensure 'PSA Code' is treated as a string to preserve leading zeros
-            Mi_PSA_geojson['PSA Code'] = Mi_PSA_geojson['PSA Code'].astype(str)
+            # Ensure 'School Code' is treated as a string to preserve leading zeros
+            Mi_School_geojson['School Code'] = Mi_School_geojson['School Code'].astype(str)
 
-            # If the 'PSA Code' column contains integers without leading zeros, add them
-            Mi_PSA_geojson['PSA Code'] = Mi_PSA_geojson['PSA Code'].apply(lambda x: str(x).zfill(5))
+            # If the 'School Code' column contains integers without leading zeros, add them
+            Mi_School_geojson['School Code'] = Mi_School_geojson['School Code'].apply(lambda x: str(x).zfill(5))
 
             # Merge GeoJSON file and DataFrame
-            # PSA_Combined = pd.merge(Mi_PSA_geojson, df, on='PSA Code', how='left', suffixes=('', '_drop')).fillna(0)
-            PSA_Combined = pd.merge(Mi_PSA_geojson, df, on='PSA Code', how='left', suffixes=('', '_drop'))
+            School_Combined = pd.merge(Mi_School_geojson, df, on='School Code', how='left', suffixes=('', '_drop'))
 
             # Identify and drop columns that end with '_drop'
-            PSA_Combined = PSA_Combined.loc[:, ~PSA_Combined.columns.str.endswith('_drop')]
+            School_Combined = School_Combined.loc[:, ~School_Combined.columns.str.endswith('_drop')]
             
             # Convert Latitude and Longitude to numeric, coercing errors to NaN
-            PSA_Combined['Latitude'] = pd.to_numeric(PSA_Combined['Latitude'], errors='coerce')
-            PSA_Combined['Longitude'] = pd.to_numeric(PSA_Combined['Longitude'], errors='coerce')
+            School_Combined['Latitude'] = pd.to_numeric(School_Combined['Latitude'], errors='coerce')
+            School_Combined['Longitude'] = pd.to_numeric(School_Combined['Longitude'], errors='coerce')
 
             # Drop rows where Latitude or Longitude are NaN
-            PSA_Combined.dropna(subset=['Latitude', 'Longitude'], inplace=True)
+            School_Combined.dropna(subset=['Latitude', 'Longitude'], inplace=True)
 
             # Load the Michigan GeoJSON file
             michigan_geojson_path = "geojson/michigan.geojson"  # file path
@@ -142,7 +135,7 @@ if uploaded_file is not None:
                     'color': 'black',        # Border color
                     'weight': 1.5,           # Slightly thicker border for clarity
                     'fillOpacity': 0.0,      # No fill opacity
-                    'lineOpacity': 1,      # Make the border more visible
+                    'lineOpacity': 1,        # Make the border more visible
                 }
 
             m = folium.Map(location=[44.3148, -85.6024], zoom_start=7, attr='MiMTSS TA Center')
@@ -153,8 +146,8 @@ if uploaded_file is not None:
                 style_function=style_function
             ).add_to(m)
 
-            # Iterate through the PSA_Combined DataFrame to add circle markers
-            for idx, row in PSA_Combined.iterrows():
+            # Iterate through the School_Combined DataFrame to add circle markers
+            for idx, row in School_Combined.iterrows():
                 if row['Count'] == 1:  # Check if the 'Count' column is 1
                     folium.CircleMarker(
                         location=[row['Latitude'], row['Longitude']],
@@ -165,64 +158,62 @@ if uploaded_file is not None:
                         fill_color='#006DB6',  # Fill color of the circle
                         fill_opacity=0.6,  # Opacity of the fill
                         opacity=1,  # Opacity of the stroke (not used since stroke=False)
-                        popup=row['PSA']
+                        popup=row['School']
                     ).add_to(m)
 
         st.divider()
 
-        # Displaying PSAs that were matched from df
-        PSAs_with_one = PSA_Combined[PSA_Combined['Count'] == 1]
-        if not PSAs_with_one.empty:
-            st.write("PSAs Included:")
-            st.dataframe(PSAs_with_one[['PSA', 'PSA Code']].reset_index(drop=True))
+        # Displaying Schools that were matched from df
+        Schools_with_one = School_Combined[School_Combined['Count'] == 1]
+        if not Schools_with_one.empty:
+            st.write("Schools Included:")
+            st.dataframe(Schools_with_one[['School', 'School Code']].reset_index(drop=True))
 
-            # Informing the user about the total number of PSAs with a count of 1
-            total_PSAs_with_one = len(PSAs_with_one)
-            # st.write(f"Total number of PSAs: {total_PSAs_with_one}")
-            st.write("Total number of PSAs:", total_PSAs_with_one)
+            # Informing the user about the total number of Schools with a count of 1
+            total_Schools_with_one = len(Schools_with_one)
+            st.write("Total number of Schools:", total_Schools_with_one)
 
             # Convert DataFrame to CSV for the download button
-            csv = PSAs_with_one[['PSA', 'PSA Code']].to_csv(index=False).encode('utf-8')
+            csv = Schools_with_one[['School', 'School Code']].to_csv(index=False).encode('utf-8')
             st.download_button(
-                label="Download Included PSA List to Verify",
+                label="Download Included School List to Verify",
                 data=csv,
-                file_name="PSA_List_to_Verify.csv",
+                file_name="School_List_to_Verify.csv",
                 mime="text/csv",
                 key='download-csv-1'
             )
         else:
-            st.write("No PSAs")
+            st.write("No Schools")
 
         st.divider() 
         
-        # Displaying PSAs that were not matched from df
-        unmatched_PSAs_df = df[~df['PSA Code'].isin(PSA_Combined['PSA Code'])]
+        # Displaying Schools that were not matched from df
+        unmatched_Schools_df = df[~df['School Code'].isin(School_Combined['School Code'])]
         
-        # Display the unmatched PSAs from df
-        if not unmatched_PSAs_df.empty:
-            st.write("PSAs unmatched::")
-            st.dataframe(unmatched_PSAs_df[['PSA', 'PSA Code']].reset_index(drop=True))
+        # Display the unmatched Schools from df
+        if not unmatched_Schools_df.empty:
+            st.write("Schools unmatched:")
+            st.dataframe(unmatched_Schools_df[['School', 'School Code']].reset_index(drop=True))
         
-            # Inform the user about the total number of unmatched PSAs from df
-            total_unmatched_PSAs_df = len(unmatched_PSAs_df)
-            st.write("Total number of unmatched PSAs:", total_unmatched_PSAs_df)
+            # Inform the user about the total number of unmatched Schools from df
+            total_unmatched_Schools_df = len(unmatched_Schools_df)
+            st.write("Total number of unmatched Schools:", total_unmatched_Schools_df)
         
             # Convert DataFrame to CSV for the download button
-            csv = unmatched_PSAs_df[['PSA', 'PSA Code']].to_csv(index=False).encode('utf-8')
+            csv = unmatched_Schools_df[['School', 'School Code']].to_csv(index=False).encode('utf-8')
             st.download_button(
-                label="Download Unmatched PSA List",
+                label="Download Unmatched School List",
                 data=csv,
-                file_name="Unmatched_PSA_List.csv",
+                file_name="Unmatched_School_List.csv",
                 mime="text/csv",
                 key='download-csv-unmatched-df'
             )
         else:
-            st.write("All PSAs from your spreadsheet matched with the Michigan PSA Location file.")
-
+            st.write("All Schools from your spreadsheet matched with the Michigan School Location file.")
 
         st.divider()
 
-        # call to render Folium map in Streamlit
+        # Call to render Folium map in Streamlit
         st_data = st_folium(m, width=725)
 
         # Save the map to a temporary HTML file and offer it for download
@@ -233,7 +224,7 @@ if uploaded_file is not None:
                 btn = st.download_button(
                     label="Download Map as HTML",
                     data=file,
-                    file_name="PSA_Map.html",
+                    file_name="School_Map.html",
                     mime="text/html",
                     type="primary"
                 )
