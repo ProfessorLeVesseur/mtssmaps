@@ -135,10 +135,10 @@ if uploaded_file is not None:
 
             #NEW 
             # Load the Michigan GeoJSON file
-            michigan_geojson_path = ""geojson/michigan.geojson"  # file path
+            michigan_geojson_path = "geojson/michigan.geojson"  # file path
             michigan_geojson = gpd.read_file(michigan_geojson_path)
             #END 
-            
+
             # Generating the Folium map
             def style_function(feature):
                 count = feature['properties'].get('Count', 0)
