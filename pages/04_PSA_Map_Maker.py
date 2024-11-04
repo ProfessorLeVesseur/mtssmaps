@@ -140,11 +140,10 @@ if uploaded_file is not None:
 
             def style_function(feature):
                 return {
-                    'fillColor': '#48BB88',  # A distinct color for Michigan
                     'color': 'black',        # Border color
                     'weight': 0.5,           # Slightly thicker border for clarity
-                    'fillOpacity': 0.7,      # Make Michigan more opaque
-                    'lineOpacity': 0.8,      # Make the border more visible
+                    'fillOpacity': 0.0,      # No fill opacity
+                    'lineOpacity': 1,      # Make the border more visible
                 }
             #END 
 
