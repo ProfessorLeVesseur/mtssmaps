@@ -50,107 +50,6 @@ contact = st.sidebar.toggle('Handmade by  \n**LeVesseur** :grey[ PhD]  \n| :grey
 if contact:
     st.sidebar.write('Inquiries: [info@mtss.ai](mailto:info@mtss.ai)  \nProfile: [levesseur.com](http://levesseur.com)  \nCheck out: [InkQA | Dynamic PDFs](http://www.inkqa.com)')  
 
-#------------------------------------------------------------------------
-# Functions
-#------------------------------------------------------------------------
-
-# # Load the MI_District_Codes file
-# @st.cache_data
-# def load_district_codes_file():
-#     return pd.read_csv("codes/MI_District_Codes.csv")
-
-# # Define the main function
-# def main():    
-#     # Upload user's file
-#     st.sidebar.header("Upload File")
-#     uploaded_file = st.sidebar.file_uploader("Upload your file", type=['xlsx', 'csv'])
-    
-#     # Load the MI_District_Codes file
-#     df = load_district_codes_file()
-    
-#     # Remove trailing spaces from the 'District' column
-#     df['District'] = df['District'].str.strip()
-    
-#     # Search functionality
-#     st.sidebar.header("Search Districts")
-#     search_string = st.sidebar.text_input("Enter search string")
-#     if search_string:
-#         matching_rows = df[df['District'].str.startswith(search_string)]
-#         # Convert 'District Code' values to strings without commas
-#         matching_rows['District Code'] = matching_rows['District Code'].astype(str)
-#         matching_rows_display = matching_rows[['District', 'District Code']]
-#         st.sidebar.subheader("Matching Rows:")
-#         st.sidebar.dataframe(matching_rows_display)
-
-#     if uploaded_file is not None:
-#         if uploaded_file.name.endswith('.csv'):
-#             df_nc = pd.read_csv(uploaded_file)
-#         elif uploaded_file.name.endswith('.xlsx'):
-#             df_nc = pd.read_excel(uploaded_file)
-#         else:
-#             st.error("Unsupported file format. Please upload a CSV or XLSX file.")
-#             return  # Stop execution if file format is not supported
-            
-#         # Remove trailing spaces from the 'District' column
-#         df_nc['District'] = df_nc['District'].str.strip()
-        
-#         # Map district codes
-#         def map_district_codes(row):
-#             matching_row = df[df['District'] == row['District']]
-#             if not matching_row.empty:
-#                 return matching_row.iloc[0]['District Code']
-#             else:
-#                 return None
-
-#         # Add 'District Code' column
-#         df_nc['District Code'] = df_nc.apply(map_district_codes, axis=1)
-
-#         # Display matched rows
-#         matched_rows = df_nc[~df_nc['District Code'].isnull()] 
-#         matched_rows['District Code'] = matched_rows['District Code'].astype(str)
-#         st.text("Matched Rows:")
-#         st.dataframe(matched_rows)
-#         st.write("Total number of matched rows:", len(matched_rows))
-
-#         # Display unmatched rows
-#         unmatched_rows = df_nc[df_nc['District Code'].isnull()]
-#         unmatched_rows['District Code'] = unmatched_rows['District Code'].astype(str)
-#         st.text("Unmatched Rows:")
-#         st.dataframe(unmatched_rows)
-#         st.write("Total number of unmatched rows:", len(unmatched_rows))
-        
-#         st.success('Processing complete!')
-        
-#         st.divider()
-        
-#         # # Download updated file
-#         # st.subheader("Download Updated File")
-#         # st.download_button("Download", data=df_nc.to_csv(), file_name='District_updated_file.csv', type="primary")
-
-#         import io
-
-#         # Ensure 'District Code' is treated as a string and remove any decimal points
-#         df_nc['District Code'] = df_nc['District Code'].apply(lambda x: str(int(float(x))) if pd.notnull(x) else '')
-        
-#         # Convert DataFrame to Excel format without the index
-#         output = io.BytesIO()
-#         with pd.ExcelWriter(output, engine='openpyxl') as writer:
-#             df_nc.to_excel(writer, index=False)
-        
-#         # Get the Excel data from the BytesIO object
-#         excel_data = output.getvalue()
-        
-#         # Download updated file as Excel
-#         st.subheader("Download Updated File")
-#         st.download_button(
-#             label="Download",
-#             data=excel_data,
-#             file_name='District_updated_file.xlsx',
-#             mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-#         )
-
-# if __name__ == "__main__":
-#     main()
 
 #------------------------------------------------------------------------
 # Functions
@@ -163,10 +62,6 @@ def load_district_codes_file():
 
 # Define the main function
 def main():
-    # Main page header for file upload
-    st.header("Upload Your File")
-    uploaded_file = st.file_uploader("Upload your file", type=['xlsx', 'csv'])
-
     # Load the MI_District_Codes file
     df = load_district_codes_file()
 
@@ -183,6 +78,10 @@ def main():
         matching_rows_display = matching_rows[['District', 'District Code']]
         st.subheader("Matching Rows:")
         st.dataframe(matching_rows_display)
+
+    # Main page header for file upload
+    st.header("Upload Your File")
+    uploaded_file = st.file_uploader("Upload your file", type=['xlsx', 'csv'])
 
     if uploaded_file is not None:
         if uploaded_file.name.endswith('.csv'):
