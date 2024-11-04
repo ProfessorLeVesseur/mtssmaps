@@ -152,7 +152,7 @@ if uploaded_file is not None:
                     folium.Marker(
                         location=[row['Latitude'], row['Longitude']],
                         popup=row['PSA'],  
-                        icon=folium.Icon(color='green', icon="school", prefix='fa')
+                        icon=folium.Icon(color='#006DB6', icon="circle", prefix='fa')
                     ).add_to(m)
 
         st.divider()
