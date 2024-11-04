@@ -143,7 +143,7 @@ if uploaded_file is not None:
                     'color': 'black',        # Border color
                     'weight': 1,           # Slightly thicker border for clarity
                     'fillOpacity': 0.0,      # No fill opacity
-                    'lineOpacity': 1,      # Make the border more visible
+                    'lineOpacity': 2,      # Make the border more visible
                 }
             #END 
 
