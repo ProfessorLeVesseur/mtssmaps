@@ -140,7 +140,7 @@ if uploaded_file is not None:
             def style_function(feature):
                 return {
                     'color': 'black',        # Border color
-                    'weight': 1,           # Slightly thicker border for clarity
+                    'weight': 2,           # Slightly thicker border for clarity
                     'fillOpacity': 0.0,      # No fill opacity
                     'lineOpacity': 1,      # Make the border more visible
                 }
