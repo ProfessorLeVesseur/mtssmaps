@@ -137,18 +137,27 @@ if uploaded_file is not None:
             # Load the Michigan GeoJSON file
             michigan_geojson_path = "geojson/michigan.geojson"  # file path
             michigan_geojson = gpd.read_file(michigan_geojson_path)
+
+            def style_function(feature):
+                return {
+                    'fillColor': '#48BB88',  # A distinct color for Michigan
+                    'color': 'black',        # Border color
+                    'weight': 0.5,           # Slightly thicker border for clarity
+                    'fillOpacity': 0.7,      # Make Michigan more opaque
+                    'lineOpacity': 0.8,      # Make the border more visible
+                }
             #END 
 
             # Generating the Folium map
-            def style_function(feature):
-                count = feature['properties'].get('Count', 0)
-                return {
-                    'fillColor': '#48BB88' if count > 0 else 'white',
-                    'color': 'black',
-                    'weight': 0.15,
-                    'fillOpacity': 0.7 if count > 0 else 0.25,
-                    'lineOpacity': 0.4,
-                }
+            # def style_function(feature):
+            #     count = feature['properties'].get('Count', 0)
+            #     return {
+            #         'fillColor': '#48BB88' if count > 0 else 'white',
+            #         'color': 'black',
+            #         'weight': 0.5,
+            #         'fillOpacity': 0.7 if count > 0 else 0.25,
+            #         'lineOpacity': 0.4,
+            #     }
 
             # with st.spinner("Generating Folium map..."):
             m = folium.Map(location=[44.3148, -85.6024], zoom_start=7, attr='MiMTSS TA Center')
