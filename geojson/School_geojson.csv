@@ -1,4 +1,4 @@
-﻿School Code,Name,Address,City,ZIP Code,Grade Levels,Locale,District Code,District,ISD Code,ISD Name,LAT,LON
+﻿School Code,Name,Address,City,ZIP Code,Grade Levels,Locale,District Code,District,ISD Code,ISD Name,Latitude,Longitude
 9848,12th Street Elementary,6501 S 12th St,Portage,490241705,"KG, 01, 02, 03, 04, 05",City: Small,39140,Portage Public Schools,39,Kalamazoo RESA,42.2202,-85.646452
 4231,5/6 Building at Georgetown,8175 36th Ave,Hudsonville,49426,"05, 06",,70190,Hudsonville Public School District,70,Ottawa Area ISD,42.917311,-85.875621
 2449,54th Street Academy,173 54th St SW,Grand Rapids,495485611,"09, 10, 11, 12",Suburb: Large,41140,Kelloggsville Public Schools,41,Kent ISD,42.868235,-85.668427
